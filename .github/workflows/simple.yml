@@ -25,5 +25,5 @@ jobs:
       - name: directory powershell
         run: Get-Location
       - name: directory bash
-        run: pwd
+        run: pwd # a step can run a command(CMD) or an action
         shell: bash # on windows machine, powershell is the default shell

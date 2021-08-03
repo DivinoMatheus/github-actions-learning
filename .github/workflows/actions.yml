@@ -23,3 +23,10 @@ jobs:
           who-to-greet: Divino # passing inputs to action
       - name: Log Greeting Time
         run: echo "${{ steps.greet.outputs.time }}"
+    outputs:
+      myname: Hello teste
+  my-second-job: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show last output value
+        run: echo ${{ steps.run-github-actions.outputs.myname }}

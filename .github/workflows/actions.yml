@@ -29,4 +29,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Show last output value
-        run: echo ${{ steps.run-github-actions.outputs.myname }}
+        run: echo ${{ jobs.run-github-actions.outputs.myname }}

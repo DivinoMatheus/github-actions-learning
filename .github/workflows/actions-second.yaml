@@ -1,0 +1,25 @@
+name: Actions Second Workflow
+
+on: [push]
+
+jobs: 
+  run-github-actions-second:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout Files
+        uses: actions/checkout@v2
+      - name: List Files
+        run: |
+          pwd
+          ls -a
+          echo $GITHUB_SHA
+          echo $GITHUB_REPOSITORY
+          echo $GITHUB_WORKSPACE
+          echo "${{ github.token }}"
+      - name: Simple JS Action
+        id: greet # step id/key(optional)
+        uses: actions/hello-world-javascript-action@v1 # using actions, github_user/name_of_action 
+        with: 
+          who-to-greet: Divino # passing inputs to action
+      - name: Log Greeting Time
+        run: echo "${{ steps.greet.outputs.time }}"

@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: dump
+        continue-on-error: true
+        timeout-minutes: 360
         run: |
           echo ${{ contains('hello', 'll') }}
           echo ${{ startsWith('hello', 'he') }}

@@ -1,0 +1,11 @@
+name: Functions
+
+on: [push]
+
+jobs: 
+  functions:
+    name: Functions job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo 'hello world'
+        run: echo 'Hello World'

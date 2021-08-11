@@ -7,5 +7,18 @@ jobs:
     name: Functions job
     runs-on: ubuntu-latest
     steps:
-      - name: Echo 'hello world'
-        run: echo 'Hello World'
+      - name: dump
+        run: |
+          echo ${{ contains('hello', 'll') }}
+          echo ${{ startsWith('hello', he) }}
+          echo ${{ endsWith('hello' 'llo')}}
+          echo ${{ format('hello {0} {1} {2}', 'world', 'my', 'friend') }}
+
+  functions-with-env:
+    name: Functions with env variables
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Showing github context'
+        env: 
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"

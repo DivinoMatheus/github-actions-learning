@@ -1,6 +1,6 @@
 name: Functions
 
-on: [push]
+on: [push, pull_request]
 
 jobs: 
   functions:
@@ -22,3 +22,24 @@ jobs:
         env: 
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
+  
+  functions-with-expression:
+    name: This job will run only in push
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: This step will failure
+        run: eccho Hello
+
+      - name: This step will run if the previous one fails´
+        if: failure()
+        run: echo 'the previous job fails'
+
+      - name: This step will always run
+        if: always()
+        run: echo 'Always running'
+
+      - name: This step will run only if the workflow was cancelled.
+        if: cancelled()
+        run: echo 'Was cancelled'

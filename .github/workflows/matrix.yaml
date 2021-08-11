@@ -5,15 +5,22 @@ on: [push]
 jobs:
   changing-node-version:
     name: Changing NodeJS version
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+        node_version: [6, 8, 10]
+    runs-on: ${{ matrix.os}}
     steps:
+      - name: Operational system
+        run: echo ${{ matrix.os }}
+
       - name: Showing actual version
         run: node -v
 
       - name: Changing the version to 8
         uses: actions/setup-node@v1
         with:
-          node-version: '8.x'
+          node-version: ${{ matrix.node_version }}
 
       - name: Showing new version
         run: node -v      

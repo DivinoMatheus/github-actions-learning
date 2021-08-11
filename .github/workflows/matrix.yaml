@@ -1,0 +1,19 @@
+name: Matrix
+
+on: [push]
+
+jobs:
+  changing-node-version:
+    name: Changing NodeJS version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Showing actual version
+        run: node -v
+
+      - name: Changing the version to 8
+        uses: actions/setup-node@v1
+        with:
+          node-version: '8.x'
+
+      - name: Showing new version
+        run: node -v      
